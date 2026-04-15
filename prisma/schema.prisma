@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+  ARTISAN
+}
+
+enum ComplaintStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  ASSIGNED
+  IN_PROGRESS
+  RESOLVED
+}
+
+enum ComplaintCategory {
+  FURNITURE
+  PLUMBING
+  ELECTRICITY
+  WELDING
+  OTHERS
+}
+
+model User {
+  id          String      @id @default(cuid())
+  matricNo    String?     @unique
+  name        String
+  email       String      @unique
+  password    String
+  role        Role        @default(STUDENT)
+  department  String?
+  level       String?
+  programme   String?
+  photo       String?
+  createdAt   DateTime    @default(now())
+  complaints  Complaint[] @relation("StudentComplaints")
+  assigned    Complaint[] @relation("ArtisanComplaints")
+}
+
+model Complaint {
+  id          String            @id @default(cuid())
+  complaintId String            @unique
+  title       String
+  description String
+  block       String
+  roomNumber  String
+  category    ComplaintCategory
+  subCategory String
+  photoUrl    String?
+  status      ComplaintStatus   @default(SUBMITTED)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  student     User              @relation("StudentComplaints", fields: [studentId], references: [id])
+  studentId   String
+  artisan     User?             @relation("ArtisanComplaints", fields: [artisanId], references: [id])
+  artisanId   String?
+}

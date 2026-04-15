@@ -1,0 +1,620 @@
+'use client'
+
+import { useState } from 'react'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import Link from 'next/link'
+
+export default function LoginPage() {
+  const router = useRouter()
+  const [identifier, setIdentifier] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState<'login' | 'help' | 'contact'>('login')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+
+    const res = await signIn('credentials', {
+      identifier,
+      password,
+      redirect: false,
+    })
+
+    if (res?.error) {
+      setError('Invalid matric number or password')
+      setLoading(false)
+      return
+    }
+
+    router.push('/dashboard')
+  }
+
+  return (
+    <div className="portal-page">
+      {/* ── University Header ── */}
+      <header className="portal-header">
+        <div className="portal-header-inner">
+          <div className="portal-logo">
+            <Image
+              src="/redeemers-logo.png"
+              alt="Redeemer's University Logo"
+              width={90}
+              height={90}
+              style={{ objectFit: 'contain' }}
+              priority
+            />
+          </div>
+          <div className="portal-header-text">
+            <h1 className="university-title">
+              <span className="title-line title-line-1">REDEEMER&rsquo;S</span>
+              <span className="title-line title-line-2">UNIVERSITY</span>
+            </h1>
+            <p>Hostel Facility Complaint Portal</p>
+          </div>
+        </div>
+      </header>
+
+      {/* ── Home Nav Bar ── */}
+      <nav className="portal-nav">
+        <div className="portal-nav-inner">
+          <button 
+            type="button"
+            className={`portal-nav-item ${activeTab === 'login' ? 'active' : ''}`}
+            onClick={() => setActiveTab('login')}
+          >
+            HOME
+          </button>
+          <button 
+            type="button"
+            className={`portal-nav-item ${activeTab === 'help' ? 'active' : ''}`}
+            onClick={() => setActiveTab('help')}
+          >
+            PORTAL HELP
+          </button>
+          <button 
+            type="button"
+            className={`portal-nav-item ${activeTab === 'contact' ? 'active' : ''}`}
+            onClick={() => setActiveTab('contact')}
+          >
+            CONTACT ADMIN
+          </button>
+        </div>
+      </nav>
+
+      {/* ── Banner Image ── */}
+      <div className="portal-banner">
+        <Image
+          src="/campus-banner.png"
+          alt="Redeemer's University campus"
+          fill
+          style={{ objectFit: 'cover' }}
+          priority
+        />
+        <div className="portal-banner-overlay" />
+      </div>
+
+      {/* ── Main Content Card ── */}
+      <main className="portal-main">
+        <div className="portal-card">
+          {/* === LOGIN TAB === */}
+          {activeTab === 'login' && (
+            <>
+              {/* Left Column: Instructions */}
+              <div className="portal-instructions">
+                <h2>To Login, do the following:</h2>
+                <ol>
+                  <li>Enter your <strong>Matric Number</strong> or <strong>Email Address</strong> in the username field.</li>
+                  <li>Enter your password correctly.</li>
+                  <li>Click the <strong>Sign In</strong> button.</li>
+                  <li>You will be taken to your complaint dashboard.</li>
+                </ol>
+
+                <h2>Complaint Instructions</h2>
+                <ol>
+                  <li>Only verified students can submit complaints.</li>
+                  <li>Select the correct category for your complaint.</li>
+                  <li>You can upload a photo of the issue.</li>
+                  <li>Track your complaint status with your unique ID.</li>
+                </ol>
+
+                <h2>Important Note</h2>
+                <p className="portal-help-note" style={{ fontStyle: 'normal', color: '#4b5563', fontSize: '13px', lineHeight: 1.7 }}>
+                  Each complaint is assigned a unique tracking ID (e.g. <strong>HFC-2026-0001</strong>). 
+                  Keep this ID safe to track the status of your complaint at any time.
+                </p>
+              </div>
+
+              {/* Divider */}
+              <div className="portal-divider" />
+
+              {/* Right Column: Login Form */}
+              <div className="portal-form-section">
+                <h2 className="portal-form-title">Portal Log-In</h2>
+                <div className="portal-form-accent" />
+
+                {error && (
+                  <div className="portal-error" role="alert">
+                    {error}
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="portal-form">
+                  <div className="portal-field">
+                    <label htmlFor="identifier">Matric Number / Email Address</label>
+                    <input
+                      id="identifier"
+                      type="text"
+                      placeholder="RUN/CSC/21/0001 or admin@run.edu.ng"
+                      value={identifier}
+                      onChange={(e) => setIdentifier(e.target.value)}
+                      required
+                      autoFocus
+                      autoComplete="username"
+                    />
+                  </div>
+
+                  <div className="portal-field">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      id="password"
+                      type="password"
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      autoComplete="current-password"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="portal-submit"
+                    disabled={loading}
+                  >
+                    {loading ? 'Signing in…' : 'Sign In'}
+                  </button>
+                </form>
+
+                {/* Staff Login Link */}
+                <div className="portal-staff-link">
+                  <Link href="/admin-login" className="portal-staff-anchor">
+                    <i className="fa-solid fa-lock mr-1" />
+                    Admin / Artisan? Sign in here
+                  </Link>
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* === HELP / FAQ TAB === */}
+          {activeTab === 'help' && (
+            <div className="portal-instructions" style={{ gridColumn: '1 / -1' }}>
+               <h2 style={{ fontSize: '24px', marginBottom: '8px' }}>Frequently Asked Questions</h2>
+               <div className="portal-form-accent" style={{ maxWidth: '100px' }} />
+               
+               <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                 <div>
+                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>How do I change my password?</h3>
+                    <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>Password modifications are handled through the main university ICT registry. Please visit the ICT building or the main portal to reset your credentials.</p>
+                 </div>
+                 <div>
+                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>How long does it take for a complaint to be fixed?</h3>
+                    <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>Minor issues (e.g. broken bulbs) are usually resolved within 24 hours. Major maintenance (plumbing, structural) may take 2-3 business days.</p>
+                 </div>
+                 <div>
+                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>Can I request a room swap here?</h3>
+                    <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>No. This portal is strictly for reporting facility and maintenance defects. Room allocations are handled by the Student Affairs division.</p>
+                 </div>
+                 <div>
+                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>Why is my matric number not working?</h3>
+                    <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>Ensure you are using the correct format (e.g., RUN/CSC/21/0001). If it still fails, your profile may not be fully synchronized with the Hostel database yet.</p>
+                 </div>
+               </div>
+            </div>
+          )}
+
+          {/* === CONTACT ADMIN TAB === */}
+          {activeTab === 'contact' && (
+            <div className="portal-instructions" style={{ gridColumn: '1 / -1' }}>
+               <h2 style={{ fontSize: '24px', marginBottom: '8px' }}>Contact Support Desk</h2>
+               <div className="portal-form-accent" style={{ maxWidth: '100px' }} />
+               
+               <p style={{ color: '#4b5563', fontSize: '15px', lineHeight: 1.6, marginTop: '16px', marginBottom: '32px' }}>
+                 If you are experiencing critical system errors, login failures, or have emergency infrastructure issues that require immediate escalation, please drop by or reach out through our official channels below.
+               </p>
+
+               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
+                 <div style={{ padding: '20px', border: '1px solid #e5e7eb', borderRadius: '12px', background: '#f9fafb' }}>
+                    <i className="fa-solid fa-envelope" style={{ fontSize: '24px', color: '#1a3a7a', marginBottom: '12px' }} />
+                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '16px' }}>Email Support</h3>
+                    <p style={{ color: '#4b5563', fontSize: '14px', marginTop: '4px' }}>hostelaid@run.edu.ng<br/>ict.support@run.edu.ng</p>
+                 </div>
+
+                 <div style={{ padding: '20px', border: '1px solid #e5e7eb', borderRadius: '12px', background: '#f9fafb' }}>
+                    <i className="fa-solid fa-phone" style={{ fontSize: '24px', color: '#1a3a7a', marginBottom: '12px' }} />
+                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '16px' }}>Helpdesk Lines</h3>
+                    <p style={{ color: '#4b5563', fontSize: '14px', marginTop: '4px' }}>+234 (0) 800 RUN HOSTEL<br/>Available 8am - 4pm</p>
+                 </div>
+
+                 <div style={{ padding: '20px', border: '1px solid #e5e7eb', borderRadius: '12px', background: '#f9fafb' }}>
+                    <i className="fa-solid fa-location-dot" style={{ fontSize: '24px', color: '#1a3a7a', marginBottom: '12px' }} />
+                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '16px' }}>Physical Office</h3>
+                    <p style={{ color: '#4b5563', fontSize: '14px', marginTop: '4px' }}>ICT Building, First Floor<br/>Redeemer&apos;s University Campus</p>
+                 </div>
+               </div>
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* ── Footer ── */}
+      <footer className="portal-footer">
+        <p>
+          Copyright © {new Date().getFullYear()} Redeemer&rsquo;s University.
+          All Rights Reserved.
+        </p>
+        <p>Hostel Facility Complaint Portal</p>
+      </footer>
+
+      <style jsx>{`
+        /* ── Page ── */
+        .portal-page {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          background: #e8eef6;
+        }
+
+        /* ── University Header ── */
+        .portal-header {
+          background-color: #0b4372;
+          background-image: repeating-linear-gradient(
+            -45deg,
+            rgba(255, 255, 255, 0.05) 0,
+            rgba(255, 255, 255, 0.05) 20px,
+            transparent 20px,
+            transparent 40px
+          );
+          padding: 16px 0;
+          border-bottom: 5px solid #1a568b;
+        }
+        .portal-header-inner {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 28px;
+          display: flex;
+          align-items: center;
+          gap: 24px;
+        }
+        .portal-logo {
+          flex-shrink: 0;
+          background: rgba(255,255,255,0.92);
+          border-radius: 50%;
+          padding: 6px;
+          box-shadow: 0 0 0 3px rgba(255,255,255,0.25), 0 4px 16px rgba(0,0,0,0.35);
+          line-height: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .portal-logo img {
+          border-radius: 50%;
+          mix-blend-mode: multiply;
+          background: transparent !important;
+        }
+        .portal-header-text {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .university-title {
+          display: flex;
+          flex-direction: column;
+          margin: 0;
+          line-height: 1;
+        }
+        .title-line {
+          font-family: "Impact", "Arial Black", var(--font-inter), sans-serif;
+          font-weight: 900;
+          color: #ffffff;
+          text-shadow: 
+            2px 2px 0 #000, 
+            -1px -1px 0 #000,  
+             1px -1px 0 #000,
+            -1px  1px 0 #000,
+             1px  1px 0 #000,
+             3px 4px 8px rgba(0,0,0,0.6);
+          letter-spacing: 1px;
+        }
+        .title-line-1 {
+          font-size: 42px;
+        }
+        .title-line-2 {
+          font-size: 38px;
+          letter-spacing: 2.5px; /* Spaced out to roughly match the width of REDEEMER'S */
+        }
+        .portal-header-text p {
+          font-size: 13px;
+          color: rgba(255, 255, 255, 0.9);
+          margin: 6px 0 0 0;
+          letter-spacing: 0.5px;
+          font-weight: 500;
+          text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* ── Nav Bar ── */
+        .portal-nav {
+          background: #1a3a7a;
+        }
+        .portal-nav-inner {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 28px;
+          display: flex;
+          gap: 0;
+        }
+        .portal-nav-item {
+          background: transparent;
+          border: none;
+          padding: 10px 22px;
+          font-family: inherit;
+          font-size: 13px;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.7);
+          letter-spacing: 0.5px;
+          cursor: pointer;
+          transition: background 150ms, color 150ms;
+        }
+        .portal-nav-item:hover {
+          color: #ffffff;
+        }
+        .portal-nav-item.active {
+          background: rgba(255, 255, 255, 0.12);
+          color: #ffffff;
+        }
+
+        /* ── Banner ── */
+        .portal-banner {
+          position: relative;
+          width: 100%;
+          height: 220px;
+          overflow: hidden;
+        }
+        .portal-banner-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(14, 35, 84, 0.15) 0%,
+            rgba(14, 35, 84, 0.35) 100%
+          );
+        }
+
+        /* ── Main Card ── */
+        .portal-main {
+          flex: 1;
+          max-width: 1100px;
+          width: 100%;
+          margin: -32px auto 0;
+          padding: 0 28px 40px;
+          position: relative;
+          z-index: 2;
+        }
+        .portal-card {
+          background: #ffffff;
+          border-radius: 12px;
+          box-shadow: 0 4px 20px rgba(9, 22, 54, 0.1);
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          gap: 0;
+          overflow: hidden;
+        }
+
+        /* ── Left: Instructions ── */
+        .portal-instructions {
+          padding: 36px 32px;
+        }
+        .portal-instructions h2 {
+          font-size: 15px;
+          font-weight: 700;
+          color: #0e2354;
+          margin: 0 0 12px 0;
+        }
+        .portal-instructions h2:not(:first-child) {
+          margin-top: 24px;
+        }
+        .portal-instructions ol {
+          padding-left: 20px;
+          margin: 0 0 0 0;
+        }
+        .portal-instructions li {
+          font-size: 13px;
+          color: #4b5563;
+          line-height: 1.7;
+          margin-bottom: 4px;
+        }
+        .portal-instructions li strong {
+          color: #1f2937;
+        }
+        .portal-help-contact {
+          margin-top: 8px;
+        }
+        .portal-help-contact p {
+          font-size: 13px;
+          color: #4b5563;
+          margin: 0 0 4px 0;
+        }
+        .portal-help-contact a {
+          color: #1a3a7a;
+          font-weight: 500;
+        }
+        .portal-help-note {
+          font-size: 12px;
+          color: #9da2b0;
+          font-style: italic;
+          margin-top: 4px;
+        }
+
+        /* ── Divider ── */
+        .portal-divider {
+          width: 1px;
+          background: #e5e7eb;
+          margin: 24px 0;
+        }
+
+        /* ── Right: Form ── */
+        .portal-form-section {
+          padding: 36px 32px;
+        }
+        .portal-form-title {
+          font-size: 20px;
+          font-weight: 700;
+          color: #0e2354;
+          text-align: center;
+          margin: 0 0 16px 0;
+        }
+        .portal-form-accent {
+          height: 4px;
+          background: linear-gradient(90deg, #1a3a7a, #3b6dcc);
+          border-radius: 2px;
+          margin: 0 0 24px 0;
+        }
+
+        /* ── Error ── */
+        .portal-error {
+          background: #fef2f2;
+          color: #dc2626;
+          border: 1px solid #fecaca;
+          border-radius: 8px;
+          padding: 10px 14px;
+          font-size: 13px;
+          margin-bottom: 16px;
+        }
+
+        /* ── Form Fields ── */
+        .portal-form {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .portal-field {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+        .portal-field label {
+          font-size: 13px;
+          font-weight: 600;
+          color: #374151;
+        }
+        .portal-field input {
+          font-family: var(--font-inter), sans-serif;
+          font-size: 14px;
+          padding: 10px 14px;
+          border: 1px solid #d1d5db;
+          border-radius: 8px;
+          background: #ffffff;
+          color: #1f2937;
+          outline: none;
+          transition: border-color 150ms, box-shadow 150ms;
+        }
+        .portal-field input:focus {
+          border-color: #1a3a7a;
+          box-shadow: 0 0 0 3px rgba(26, 58, 122, 0.1);
+        }
+        .portal-field input::placeholder {
+          color: #9ca3af;
+        }
+
+        /* ── Submit ── */
+        .portal-submit {
+          font-family: var(--font-inter), sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          padding: 11px 24px;
+          background: #0e2354;
+          color: #ffffff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background 150ms;
+          margin-top: 4px;
+        }
+        .portal-submit:hover:not(:disabled) {
+          background: #1a3a7a;
+        }
+        .portal-submit:disabled {
+          opacity: 0.6;
+          cursor: wait;
+        }
+
+        /* ── Staff Login Link ── */
+        .portal-staff-link {
+          text-align: center;
+          margin-top: 16px;
+          padding-top: 14px;
+          border-top: 1px solid #f3f4f6;
+        }
+        .portal-staff-anchor {
+          font-size: 12px;
+          color: #6b7280;
+          text-decoration: none;
+          transition: color 150ms;
+        }
+        .portal-staff-anchor:hover {
+          color: #1a3a7a;
+        }
+
+        /* ── Footer ── */
+        .portal-footer {
+          background: #091636;
+          padding: 16px 28px;
+          text-align: center;
+        }
+        .portal-footer p {
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.45);
+          margin: 0;
+          line-height: 1.7;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 640px) {
+          .portal-header-inner {
+            flex-direction: column;
+            text-align: center;
+            gap: 12px;
+          }
+          .portal-header-text h1 {
+            font-size: 22px;
+          }
+          .portal-banner {
+            height: 140px;
+          }
+          .portal-card {
+            grid-template-columns: 1fr;
+          }
+          .portal-divider {
+            width: auto;
+            height: 1px;
+            margin: 0 24px;
+          }
+          .portal-instructions {
+            padding: 28px 24px 20px;
+          }
+          .portal-form-section {
+            padding: 20px 24px 28px;
+          }
+          .portal-nav-inner {
+            justify-content: center;
+          }
+        }
+      `}</style>
+    </div>
+  )
+}
