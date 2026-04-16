@@ -180,13 +180,11 @@ export default function NewComplaintPage() {
             onClick={() => {
               setSuccess(null)
               setForm({ title: '', description: '', block: '', roomNumber: '', category: '', subCategory: '', photoUrl: '' })
-            }}
-            className="bg-gray-100 text-gray-700 px-6 py-2.5 rounded-xl font-semibold text-sm hover:bg-gray-200 transition-colors"
-            onClick={() => {
               setPhotoFile(null)
               setPhotoPreview(null)
               setUploadError('')
             }}
+            className="bg-gray-100 text-gray-700 px-6 py-2.5 rounded-xl font-semibold text-sm hover:bg-gray-200 transition-colors"
           >
             Submit Another
           </button>

@@ -7,12 +7,21 @@ import { useEffect, useState } from 'react'
 
 export type NavRole = 'STUDENT' | 'ADMIN' | 'ARTISAN'
 
+interface NavTab {
+  id: string
+  label: string
+  href: string
+  icon: string
+  isFab?: boolean
+  action?: string
+}
+
 export function AppNavigation({ role }: { role: NavRole }) {
   const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
 
-  const tabs = {
+  const allTabs: Record<NavRole, NavTab[]> = {
     STUDENT: [
       { id: '1', label: 'Home', href: '/dashboard', icon: 'fa-house' },
       { id: '2', label: 'Complaints', href: '/dashboard/complaints', icon: 'fa-clipboard-list' },
@@ -29,7 +38,9 @@ export function AppNavigation({ role }: { role: NavRole }) {
       { id: '1', label: 'Tasks', href: '/artisan', icon: 'fa-wrench' },
       { id: '2', label: 'Profile', href: '#', icon: 'fa-user', action: 'logout' },
     ],
-  }[role]
+  }
+
+  const tabs = allTabs[role]
 
   const handleAction = (action?: string) => {
     if (action === 'logout') {
