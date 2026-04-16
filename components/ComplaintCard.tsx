@@ -55,7 +55,7 @@ export function ComplaintCard({
             <i className={`fa-solid ${CATEGORY_ICONS[category]} text-base`} />
           </span>
           <div className="min-w-0">
-            <p className="text-xs font-mono text-gray-400 mb-0.5">{complaintId}</p>
+            <p className="text-xs font-mono text-gray-500 mb-0.5">{complaintId}</p>
             <h3 className="font-semibold text-[#0D1F3C] truncate group-hover:text-[#112240] transition-colors">
               {title}
             </h3>
@@ -64,7 +64,7 @@ export function ComplaintCard({
         <StatusBadge status={status} size="sm" />
       </div>
 
-      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500">
+      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-600">
         <span>
           <i className="fa-solid fa-location-dot mr-1" />
           Block {block}, Room {roomNumber}

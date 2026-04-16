@@ -61,13 +61,13 @@ export default function ComplaintsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-[#0D1F3C]">My Complaints</h1>
-          <p className="text-gray-500 text-sm mt-1">
+          <p className="text-gray-600 text-sm mt-1">
             Track and manage all your submitted facility complaints
           </p>
         </div>
         <Link
           href="/dashboard/complaints/new"
-          className="inline-flex items-center gap-2 bg-[#0D1F3C] text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-[#112240] transition-colors shadow-sm"
+          className="inline-flex items-center gap-2 bg-[#0D1F3C] text-white px-5 min-h-[48px] rounded-xl font-semibold text-sm hover:bg-[#112240] transition-colors shadow-sm"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -87,7 +87,7 @@ export default function ComplaintsPage() {
           ].map(({ label, count, color, bg, border }) => (
             <div key={label} className={`rounded-xl ${bg} border ${border} p-4`}>
               <p className={`text-2xl font-bold ${color}`}>{count}</p>
-              <p className="text-xs text-gray-500 mt-0.5">{label}</p>
+              <p className="text-xs text-gray-600 mt-0.5">{label}</p>
             </div>
           ))}
         </div>
@@ -99,9 +99,9 @@ export default function ComplaintsPage() {
           <button
             key={tab.value}
             onClick={() => setActiveTab(tab.value)}
-            className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+            className={`flex-shrink-0 px-5 min-h-[48px] rounded-xl text-sm font-semibold transition-all ${
               activeTab === tab.value
-                ? 'bg-[#0D1F3C] text-white'
+                ? 'bg-[#0D1F3C] text-white shadow-md'
                 : 'bg-white text-gray-600 border border-gray-200 hover:border-[#0D1F3C]/30 hover:text-[#0D1F3C]'
             }`}
           >
@@ -109,7 +109,7 @@ export default function ComplaintsPage() {
             {counts[tab.value] > 0 && (
               <span
                 className={`ml-1.5 text-xs px-1.5 py-0.5 rounded-full ${
-                  activeTab === tab.value ? 'bg-white/20' : 'bg-gray-100'
+                  activeTab === tab.value ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-700'
                 }`}
               >
                 {counts[tab.value]}
@@ -138,7 +138,7 @@ export default function ComplaintsPage() {
           <p className="text-sm text-gray-500 mb-5">Submit a new complaint to get started.</p>
           <Link
             href="/dashboard/complaints/new"
-            className="inline-flex items-center gap-2 bg-[#0D1F3C] text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-[#112240] transition-colors"
+            className="inline-flex items-center justify-center gap-2 bg-[#0D1F3C] text-white px-6 min-h-[48px] rounded-xl font-semibold text-sm hover:bg-[#112240] transition-colors"
           >
             + New Complaint
           </Link>

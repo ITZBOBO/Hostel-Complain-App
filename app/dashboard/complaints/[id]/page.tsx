@@ -96,7 +96,7 @@ export default function ComplaintDetailPage() {
       <div className="bg-white rounded-xl border border-gray-200 p-6 mb-5">
         <div className="flex items-start justify-between gap-4 mb-4">
           <div>
-            <p className="text-xs font-mono text-gray-400 mb-1">{complaint.complaintId}</p>
+            <p className="text-xs font-mono text-gray-500 mb-1">{complaint.complaintId}</p>
             <h1 className="text-xl font-bold text-[#0D1F3C]">{complaint.title}</h1>
           </div>
           <StatusBadge status={complaint.status} />
@@ -110,40 +110,40 @@ export default function ComplaintDetailPage() {
 
       {/* Details */}
       <div className="bg-white rounded-xl border border-gray-200 p-6 mb-5">
-        <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">
+        <h2 className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-4">
           Details
         </h2>
         <div className="grid grid-cols-2 gap-4 text-sm mb-4">
           <div>
-            <p className="text-gray-400 text-xs mb-0.5">Category</p>
+            <p className="text-gray-500 text-xs mb-0.5">Category</p>
             <p className="font-medium text-gray-800">
               <i className={`fa-solid ${CATEGORY_ICONS[complaint.category]} mr-1.5`} />{complaint.category}
             </p>
           </div>
           <div>
-            <p className="text-gray-400 text-xs mb-0.5">Subcategory</p>
+            <p className="text-gray-500 text-xs mb-0.5">Subcategory</p>
             <p className="font-medium text-gray-800">{complaint.subCategory}</p>
           </div>
           <div>
-            <p className="text-gray-400 text-xs mb-0.5">Block</p>
+            <p className="text-gray-500 text-xs mb-0.5">Block</p>
             <p className="font-medium text-gray-800">Block {complaint.block}</p>
           </div>
           <div>
-            <p className="text-gray-400 text-xs mb-0.5">Room Number</p>
+            <p className="text-gray-500 text-xs mb-0.5">Room Number</p>
             <p className="font-medium text-gray-800">{complaint.roomNumber}</p>
           </div>
           <div>
-            <p className="text-gray-400 text-xs mb-0.5">Submitted</p>
+            <p className="text-gray-500 text-xs mb-0.5">Submitted</p>
             <p className="font-medium text-gray-800">{formatDate(complaint.createdAt)}</p>
           </div>
           <div>
-            <p className="text-gray-400 text-xs mb-0.5">Last Updated</p>
+            <p className="text-gray-500 text-xs mb-0.5">Last Updated</p>
             <p className="font-medium text-gray-800">{formatDate(complaint.updatedAt)}</p>
           </div>
         </div>
 
         <div>
-          <p className="text-gray-400 text-xs mb-1">Description</p>
+          <p className="text-gray-500 text-xs mb-1">Description</p>
           <p className="text-gray-700 text-sm leading-relaxed">{complaint.description}</p>
         </div>
       </div>
@@ -169,7 +169,7 @@ export default function ComplaintDetailPage() {
       {/* Photo */}
       {complaint.photoUrl && (
         <div className="bg-white rounded-xl border border-gray-200 p-6 mb-5">
-          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">Photo</h2>
+          <h2 className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-4">Photo</h2>
           <div className="relative w-full h-64 rounded-lg overflow-hidden">
             <Image
               src={complaint.photoUrl}

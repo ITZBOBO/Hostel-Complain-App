@@ -22,6 +22,7 @@ export default function LoginPage() {
     const res = await signIn('credentials', {
       identifier,
       password,
+      portal: 'student',
       redirect: false,
     })
 
@@ -62,21 +63,21 @@ export default function LoginPage() {
       {/* ── Home Nav Bar ── */}
       <nav className="portal-nav">
         <div className="portal-nav-inner">
-          <button 
+          <button
             type="button"
             className={`portal-nav-item ${activeTab === 'login' ? 'active' : ''}`}
             onClick={() => setActiveTab('login')}
           >
             HOME
           </button>
-          <button 
+          <button
             type="button"
             className={`portal-nav-item ${activeTab === 'help' ? 'active' : ''}`}
             onClick={() => setActiveTab('help')}
           >
             PORTAL HELP
           </button>
-          <button 
+          <button
             type="button"
             className={`portal-nav-item ${activeTab === 'contact' ? 'active' : ''}`}
             onClick={() => setActiveTab('contact')}
@@ -124,7 +125,7 @@ export default function LoginPage() {
 
                 <h2>Important Note</h2>
                 <p className="portal-help-note" style={{ fontStyle: 'normal', color: '#4b5563', fontSize: '13px', lineHeight: 1.7 }}>
-                  Each complaint is assigned a unique tracking ID (e.g. <strong>HFC-2026-0001</strong>). 
+                  Each complaint is assigned a unique tracking ID (e.g. <strong>HFC-2026-0001</strong>).
                   Keep this ID safe to track the status of your complaint at any time.
                 </p>
               </div>
@@ -149,7 +150,7 @@ export default function LoginPage() {
                     <input
                       id="identifier"
                       type="text"
-                      placeholder="RUN/CSC/21/0001 or admin@run.edu.ng"
+                      placeholder="RUN/CSC/21/0001"
                       value={identifier}
                       onChange={(e) => setIdentifier(e.target.value)}
                       required
@@ -194,59 +195,59 @@ export default function LoginPage() {
           {/* === HELP / FAQ TAB === */}
           {activeTab === 'help' && (
             <div className="portal-instructions" style={{ gridColumn: '1 / -1' }}>
-               <h2 style={{ fontSize: '24px', marginBottom: '8px' }}>Frequently Asked Questions</h2>
-               <div className="portal-form-accent" style={{ maxWidth: '100px' }} />
-               
-               <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                 <div>
-                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>How do I change my password?</h3>
-                    <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>Password modifications are handled through the main university ICT registry. Please visit the ICT building or the main portal to reset your credentials.</p>
-                 </div>
-                 <div>
-                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>How long does it take for a complaint to be fixed?</h3>
-                    <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>Minor issues (e.g. broken bulbs) are usually resolved within 24 hours. Major maintenance (plumbing, structural) may take 2-3 business days.</p>
-                 </div>
-                 <div>
-                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>Can I request a room swap here?</h3>
-                    <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>No. This portal is strictly for reporting facility and maintenance defects. Room allocations are handled by the Student Affairs division.</p>
-                 </div>
-                 <div>
-                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>Why is my matric number not working?</h3>
-                    <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>Ensure you are using the correct format (e.g., RUN/CSC/21/0001). If it still fails, your profile may not be fully synchronized with the Hostel database yet.</p>
-                 </div>
-               </div>
+              <h2 style={{ fontSize: '24px', marginBottom: '8px' }}>Frequently Asked Questions</h2>
+              <div className="portal-form-accent" style={{ maxWidth: '100px' }} />
+
+              <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div>
+                  <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>How do I change my password?</h3>
+                  <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>Password modifications are handled through the main university ICT registry. Please visit the ICT building or the main portal to reset your credentials.</p>
+                </div>
+                <div>
+                  <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>How long does it take for a complaint to be fixed?</h3>
+                  <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>Minor issues (e.g. broken bulbs) are usually resolved within 24 hours. Major maintenance (plumbing, structural) may take 2-3 business days.</p>
+                </div>
+                <div>
+                  <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>Can I request a room swap here?</h3>
+                  <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>No. This portal is strictly for reporting facility and maintenance defects. Room allocations are handled by the Student Affairs division.</p>
+                </div>
+                <div>
+                  <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '15px' }}>Why is my matric number not working?</h3>
+                  <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: 1.6, marginTop: '4px' }}>Ensure you are using the correct format (e.g., RUN/CSC/21/0001). If it still fails, your profile may not be fully synchronized with the Hostel database yet.</p>
+                </div>
+              </div>
             </div>
           )}
 
           {/* === CONTACT ADMIN TAB === */}
           {activeTab === 'contact' && (
             <div className="portal-instructions" style={{ gridColumn: '1 / -1' }}>
-               <h2 style={{ fontSize: '24px', marginBottom: '8px' }}>Contact Support Desk</h2>
-               <div className="portal-form-accent" style={{ maxWidth: '100px' }} />
-               
-               <p style={{ color: '#4b5563', fontSize: '15px', lineHeight: 1.6, marginTop: '16px', marginBottom: '32px' }}>
-                 If you are experiencing critical system errors, login failures, or have emergency infrastructure issues that require immediate escalation, please drop by or reach out through our official channels below.
-               </p>
+              <h2 style={{ fontSize: '24px', marginBottom: '8px' }}>Contact Support Desk</h2>
+              <div className="portal-form-accent" style={{ maxWidth: '100px' }} />
 
-               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
-                 <div style={{ padding: '20px', border: '1px solid #e5e7eb', borderRadius: '12px', background: '#f9fafb' }}>
-                    <i className="fa-solid fa-envelope" style={{ fontSize: '24px', color: '#1a3a7a', marginBottom: '12px' }} />
-                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '16px' }}>Email Support</h3>
-                    <p style={{ color: '#4b5563', fontSize: '14px', marginTop: '4px' }}>hostelaid@run.edu.ng<br/>ict.support@run.edu.ng</p>
-                 </div>
+              <p style={{ color: '#4b5563', fontSize: '15px', lineHeight: 1.6, marginTop: '16px', marginBottom: '32px' }}>
+                If you are experiencing critical system errors, login failures, or have emergency infrastructure issues that require immediate escalation, please drop by or reach out through our official channels below.
+              </p>
 
-                 <div style={{ padding: '20px', border: '1px solid #e5e7eb', borderRadius: '12px', background: '#f9fafb' }}>
-                    <i className="fa-solid fa-phone" style={{ fontSize: '24px', color: '#1a3a7a', marginBottom: '12px' }} />
-                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '16px' }}>Helpdesk Lines</h3>
-                    <p style={{ color: '#4b5563', fontSize: '14px', marginTop: '4px' }}>+234 (0) 800 RUN HOSTEL<br/>Available 8am - 4pm</p>
-                 </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
+                <div style={{ padding: '20px', border: '1px solid #e5e7eb', borderRadius: '12px', background: '#f9fafb' }}>
+                  <i className="fa-solid fa-envelope" style={{ fontSize: '24px', color: '#1a3a7a', marginBottom: '12px' }} />
+                  <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '16px' }}>Email Support</h3>
+                  <p style={{ color: '#4b5563', fontSize: '14px', marginTop: '4px' }}>hostelaid@run.edu.ng<br />ict.support@run.edu.ng</p>
+                </div>
 
-                 <div style={{ padding: '20px', border: '1px solid #e5e7eb', borderRadius: '12px', background: '#f9fafb' }}>
-                    <i className="fa-solid fa-location-dot" style={{ fontSize: '24px', color: '#1a3a7a', marginBottom: '12px' }} />
-                    <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '16px' }}>Physical Office</h3>
-                    <p style={{ color: '#4b5563', fontSize: '14px', marginTop: '4px' }}>ICT Building, First Floor<br/>Redeemer&apos;s University Campus</p>
-                 </div>
-               </div>
+                <div style={{ padding: '20px', border: '1px solid #e5e7eb', borderRadius: '12px', background: '#f9fafb' }}>
+                  <i className="fa-solid fa-phone" style={{ fontSize: '24px', color: '#1a3a7a', marginBottom: '12px' }} />
+                  <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '16px' }}>Helpdesk Lines</h3>
+                  <p style={{ color: '#4b5563', fontSize: '14px', marginTop: '4px' }}>+234 (0) 800 RUN HOSTEL<br />Available 8am - 4pm</p>
+                </div>
+
+                <div style={{ padding: '20px', border: '1px solid #e5e7eb', borderRadius: '12px', background: '#f9fafb' }}>
+                  <i className="fa-solid fa-location-dot" style={{ fontSize: '24px', color: '#1a3a7a', marginBottom: '12px' }} />
+                  <h3 style={{ color: '#0e2354', fontWeight: 700, fontSize: '16px' }}>Physical Office</h3>
+                  <p style={{ color: '#4b5563', fontSize: '14px', marginTop: '4px' }}>ICT Building, First Floor<br />Redeemer&apos;s University Campus</p>
+                </div>
+              </div>
             </div>
           )}
         </div>
@@ -516,6 +517,7 @@ export default function LoginPage() {
           font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           padding: 10px 14px;
+          min-height: 48px;
           border: 1px solid #d1d5db;
           border-radius: 8px;
           background: #ffffff;
@@ -540,6 +542,7 @@ export default function LoginPage() {
           background: #0e2354;
           color: #ffffff;
           border: none;
+          min-height: 48px;
           border-radius: 8px;
           cursor: pointer;
           transition: background 150ms;
@@ -561,13 +564,15 @@ export default function LoginPage() {
           border-top: 1px solid #f3f4f6;
         }
         .portal-staff-anchor {
-          font-size: 12px;
-          color: #6b7280;
+          font-size: 13px;
+          font-weight: 600;
+          color: #1a3a7a;
           text-decoration: none;
           transition: color 150ms;
         }
         .portal-staff-anchor:hover {
-          color: #1a3a7a;
+          color: #0e2354;
+          text-decoration: underline;
         }
 
         /* ── Footer ── */
@@ -597,7 +602,8 @@ export default function LoginPage() {
             height: 140px;
           }
           .portal-card {
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column-reverse;
           }
           .portal-divider {
             width: auto;

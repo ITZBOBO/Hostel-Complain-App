@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { AdminSidebarNav } from '@/components/AdminSidebarNav'
+import { AppNavigation } from '@/components/AppNavigation'
 
 export default async function AdminLayout({
   children,
@@ -16,48 +16,39 @@ export default async function AdminLayout({
   if (user.role !== 'ADMIN') redirect('/dashboard')
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
-      <aside className="w-64 bg-[#0D1F3C] flex flex-col flex-shrink-0 fixed h-full z-40">
-        {/* Logo */}
-        <div className="px-6 py-5 border-b border-white/10">
-          <Link href="/admin" className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-amber-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold">R</span>
+    <div className="min-h-[100dvh] bg-gray-50 flex flex-col font-sans text-slate-800 pb-[68px] md:pb-0">
+      
+      {/* Universal Top Header */}
+      <header className="sticky top-0 z-[100] w-full bg-[#0D1F3C] shadow-md transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[68px] flex items-center justify-between">
+          
+          {/* Brand */}
+          <Link href="/admin" className="flex items-center gap-3 shrink-0 group">
+            <div className="w-9 h-9 bg-amber-500 rounded-lg flex items-center justify-center shadow-sm transition-transform group-hover:scale-105">
+              <span className="text-white font-bold text-sm">R</span>
             </div>
             <div>
-              <p className="text-white font-bold text-sm leading-none">RUN Hostel</p>
-              <p className="text-gray-400 text-xs mt-0.5">Admin Portal</p>
+              <p className="text-white font-bold text-base leading-none tracking-wide">RUN Hostel</p>
+              <p className="text-blue-200 font-medium text-[10px] uppercase tracking-wider mt-0.5">Admin Portal</p>
             </div>
           </Link>
-        </div>
 
-        {/* Nav */}
-        <AdminSidebarNav />
-
-        {/* User Info */}
-        <div className="mt-auto px-4 py-4 border-t border-white/10">
-          <div className="flex items-center gap-3 bg-white/5 rounded-xl px-3 py-2.5">
-            <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
-              {(user.name as string)[0].toUpperCase()}
-            </div>
-            <div className="min-w-0">
-              <p className="text-white text-sm font-medium truncate">{user.name}</p>
-              <p className="text-gray-400 text-xs">Administrator</p>
-            </div>
-          </div>
+          {/* Nav */}
+          <AppNavigation role="ADMIN" />
         </div>
-      </aside>
+      </header>
 
       {/* Main Content */}
-      <div className="flex-1 ml-64 flex flex-col min-h-screen">
-        <main className="flex-1 p-8">
-          {children}
-        </main>
-        <footer className="text-center text-xs text-gray-400 py-4">
-          © 2026 Redeemer's University Nigeria — Admin Portal
-        </footer>
-      </div>
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-6 md:py-8 flex flex-col min-w-0">
+        {children}
+      </main>
+
+      <footer className="hidden md:block w-full py-8 text-center bg-white border-t border-gray-200 mt-auto">
+        <p className="text-xs text-gray-400 font-medium">
+          © {new Date().getFullYear()} Redeemer's University — Admin Portal
+        </p>
+      </footer>
     </div>
   )
 }
+

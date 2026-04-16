@@ -187,7 +187,7 @@ export default function ArtisanComplaintDetailPage() {
                   id={`update-status-${nextStatus}`}
                   onClick={() => handleStatusUpdate(nextStatus)}
                   disabled={saving}
-                  className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all disabled:opacity-50 ${
+                  className={`px-4 py-2 min-h-[44px] rounded-xl text-sm font-semibold transition-all disabled:opacity-50 w-full sm:w-auto flex items-center justify-center ${
                     nextStatus === 'RESOLVED'
                       ? 'bg-green-600 text-white hover:bg-green-700'
                       : 'bg-[#0D1F3C] text-white hover:bg-[#112240]'
@@ -221,7 +221,7 @@ export default function ArtisanComplaintDetailPage() {
         <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
           Complaint Details
         </h2>
-        <div className="grid grid-cols-2 gap-4 text-sm mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm mb-4">
           <div>
             <p className="text-gray-400 text-xs mb-0.5">Student</p>
             <p className="font-medium text-gray-800">

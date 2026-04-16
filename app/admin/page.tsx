@@ -54,7 +54,7 @@ export default async function AdminDashboardPage() {
       {/* Page Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-[#0D1F3C]">Admin Dashboard</h1>
-        <p className="text-gray-500 text-sm mt-1">
+        <p className="text-gray-600 text-sm mt-1">
           Overview of all hostel facility complaints — Redeemer's University
         </p>
       </div>
@@ -67,14 +67,14 @@ export default async function AdminDashboardPage() {
               <i className={`fa-solid ${icon} text-xl ${color}`} />
             </div>
             <p className={`text-3xl font-bold ${color}`}>{value}</p>
-            <p className="text-xs text-gray-500 mt-1">{label}</p>
+            <p className="text-xs text-gray-600 mt-1">{label}</p>
           </div>
         ))}
       </div>
 
       {/* Status Breakdown */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
-        <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">
+        <h2 className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-4">
           Status Breakdown
         </h2>
         <div className="space-y-3">
@@ -95,7 +95,7 @@ export default async function AdminDashboardPage() {
                   style={{ width: total > 0 ? `${(count / total) * 100}%` : '0%' }}
                 />
               </div>
-              <span className="text-sm font-semibold text-gray-700 w-8 text-right">{count}</span>
+              <span className="text-sm font-semibold text-gray-800 w-8 text-right">{count}</span>
             </div>
           ))}
         </div>
@@ -104,7 +104,7 @@ export default async function AdminDashboardPage() {
       {/* Recent Complaints */}
       <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
+          <h2 className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
             Recent Complaints
           </h2>
           <Link
@@ -127,9 +127,9 @@ export default async function AdminDashboardPage() {
                 className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-mono text-gray-400">{c.complaintId}</p>
+                  <p className="text-xs font-mono text-gray-500">{c.complaintId}</p>
                   <p className="font-semibold text-sm text-[#0D1F3C] truncate">{c.title}</p>
-                  <p className="text-xs text-gray-400 mt-0.5">
+                  <p className="text-xs text-gray-600 mt-0.5">
                     {c.student.name} · Block {c.block}, Room {c.roomNumber}
                   </p>
                 </div>

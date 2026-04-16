@@ -42,6 +42,7 @@ export default function StaffLoginPage() {
     const res = await signIn('credentials', {
       identifier: email,
       password,
+      portal: 'staff',
       redirect: false,
     })
 
@@ -325,7 +326,7 @@ export default function StaffLoginPage() {
         }
         .staff-form-sub {
           font-size: 13px;
-          color: rgba(255,255,255,0.5);
+          color: rgba(255,255,255,0.85);
           margin: 0 0 20px 0;
         }
         .staff-form-accent {
@@ -389,7 +390,7 @@ export default function StaffLoginPage() {
         }
         .staff-role-desc {
           font-size: 12px;
-          color: rgba(255,255,255,0.45);
+          color: rgba(255,255,255,0.75);
         }
         .staff-role-check {
           width: 22px;
@@ -450,7 +451,7 @@ export default function StaffLoginPage() {
         .staff-field label {
           font-size: 12px;
           font-weight: 600;
-          color: rgba(255,255,255,0.6);
+          color: rgba(255,255,255,0.9);
           letter-spacing: 0.3px;
           text-transform: uppercase;
         }
@@ -458,6 +459,7 @@ export default function StaffLoginPage() {
           font-family: inherit;
           font-size: 14px;
           padding: 11px 14px;
+          min-height: 48px;
           border: 1px solid rgba(255,255,255,0.1);
           border-radius: 10px;
           background: rgba(255,255,255,0.06);
@@ -466,7 +468,7 @@ export default function StaffLoginPage() {
           transition: border-color 150ms, box-shadow 150ms;
         }
         .staff-field input::placeholder {
-          color: rgba(255,255,255,0.25);
+          color: rgba(255,255,255,0.5);
         }
         .staff-field input:focus {
           border-color: rgba(250,204,21,0.5);
@@ -488,6 +490,7 @@ export default function StaffLoginPage() {
           color: #0d1f3c;
           font-size: 14px;
           font-weight: 700;
+          min-height: 48px;
           border: none;
           border-radius: 10px;
           cursor: pointer;
@@ -535,12 +538,12 @@ export default function StaffLoginPage() {
         }
         .staff-back-link {
           font-size: 13px;
-          color: rgba(255,255,255,0.4);
+          color: rgba(255,255,255,0.65);
           text-decoration: none;
           transition: color 150ms;
         }
         .staff-back-link:hover {
-          color: rgba(255,255,255,0.75);
+          color: rgba(255,255,255,0.95);
         }
 
         /* ── Footer ── */
@@ -559,6 +562,9 @@ export default function StaffLoginPage() {
 
         /* ── Mobile ── */
         @media (max-width: 520px) {
+          .staff-main {
+            padding: 20px 16px;
+          }
           .staff-card {
             padding: 28px 20px;
             border-radius: 16px;

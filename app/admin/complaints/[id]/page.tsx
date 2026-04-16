@@ -168,7 +168,7 @@ export default function AdminComplaintDetailPage() {
           <div className="bg-white rounded-2xl border border-gray-200 p-6">
             <div className="flex items-start justify-between gap-4 mb-4">
               <div>
-                <p className="text-xs font-mono text-gray-400 mb-1">{complaint.complaintId}</p>
+                <p className="text-xs font-mono text-gray-500 mb-1">{complaint.complaintId}</p>
                 <h1 className="text-xl font-bold text-[#0D1F3C]">{complaint.title}</h1>
               </div>
               <StatusBadge status={complaint.status} />
@@ -180,46 +180,46 @@ export default function AdminComplaintDetailPage() {
 
           {/* Student Info */}
           <div className="bg-white rounded-2xl border border-gray-200 p-6">
-            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Student</h2>
+            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">Student</h2>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#0D1F3C]/10 flex items-center justify-center text-[#0D1F3C] font-bold">
                 {complaint.student.name[0].toUpperCase()}
               </div>
               <div>
                 <p className="font-semibold text-gray-800">{complaint.student.name}</p>
-                <p className="text-xs text-gray-400">{complaint.student.matricNo} · {complaint.student.email}</p>
+                <p className="text-xs text-gray-500">{complaint.student.matricNo} · {complaint.student.email}</p>
               </div>
             </div>
           </div>
 
           {/* Details */}
           <div className="bg-white rounded-2xl border border-gray-200 p-6">
-            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Details</h2>
+            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">Details</h2>
             <div className="grid grid-cols-2 gap-4 text-sm mb-4">
               <div>
-                <p className="text-gray-400 text-xs mb-0.5">Category</p>
+                <p className="text-gray-500 text-xs mb-0.5">Category</p>
                 <p className="font-medium"><i className={`fa-solid ${CATEGORY_ICONS[complaint.category]} mr-1.5`} />{complaint.category}</p>
               </div>
               <div>
-                <p className="text-gray-400 text-xs mb-0.5">Subcategory</p>
+                <p className="text-gray-500 text-xs mb-0.5">Subcategory</p>
                 <p className="font-medium">{complaint.subCategory}</p>
               </div>
               <div>
-                <p className="text-gray-400 text-xs mb-0.5">Block / Room</p>
+                <p className="text-gray-500 text-xs mb-0.5">Block / Room</p>
                 <p className="font-medium">Block {complaint.block}, Room {complaint.roomNumber}</p>
               </div>
               <div>
-                <p className="text-gray-400 text-xs mb-0.5">Submitted</p>
+                <p className="text-gray-500 text-xs mb-0.5">Submitted</p>
                 <p className="font-medium">{formatDate(complaint.createdAt)}</p>
               </div>
             </div>
             <div>
-              <p className="text-gray-400 text-xs mb-1">Description</p>
+              <p className="text-gray-500 text-xs mb-1">Description</p>
               <p className="text-gray-700 text-sm leading-relaxed">{complaint.description}</p>
             </div>
             {complaint.photoUrl && (
               <div className="mt-4">
-                <p className="text-gray-400 text-xs mb-2">Photo</p>
+                <p className="text-gray-500 text-xs mb-2">Photo</p>
                 <div className="relative w-full h-52 rounded-xl overflow-hidden">
                   <Image src={complaint.photoUrl} alt="Complaint photo" fill className="object-cover" />
                 </div>
@@ -231,19 +231,19 @@ export default function AdminComplaintDetailPage() {
         {/* Right: Actions */}
         <div className="space-y-5">
           <div className="bg-white rounded-2xl border border-gray-200 p-6">
-            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
+            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">
               Manage Complaint
             </h2>
 
             <div className="space-y-4">
               {/* Status */}
               <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1.5">Status</label>
+                <label className="block text-xs font-semibold text-gray-700 mb-1.5">Status</label>
                 <select
                   id="admin-status-select"
                   value={selectedStatus}
                   onChange={(e) => setSelectedStatus(e.target.value as ComplaintStatus)}
-                  className="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] bg-white"
+                  className="w-full border border-gray-300 rounded-xl px-3 py-2.5 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] bg-white"
                 >
                   {STATUS_OPTIONS.map((s) => (
                     <option key={s.value} value={s.value}>{s.label}</option>
@@ -253,14 +253,14 @@ export default function AdminComplaintDetailPage() {
 
               {/* Artisan Assignment */}
               <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1.5">
+                <label className="block text-xs font-semibold text-gray-700 mb-1.5">
                   Assign to Artisan
                 </label>
                 <select
                   id="admin-artisan-select"
                   value={selectedArtisan}
                   onChange={(e) => setSelectedArtisan(e.target.value)}
-                  className="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] bg-white"
+                  className="w-full border border-gray-300 rounded-xl px-3 py-2.5 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] bg-white"
                 >
                   <option value="">— Unassigned —</option>
                   {artisans.map((a) => (
@@ -281,7 +281,7 @@ export default function AdminComplaintDetailPage() {
                 id="admin-save-btn"
                 onClick={handleSave}
                 disabled={saving}
-                className="w-full bg-[#0D1F3C] text-white py-2.5 rounded-xl font-semibold text-sm hover:bg-[#112240] disabled:opacity-50 transition-all"
+                className="w-full bg-[#0D1F3C] text-white py-2.5 rounded-xl min-h-[44px] font-semibold text-sm hover:bg-[#112240] disabled:opacity-50 transition-all"
               >
                 {saving ? 'Saving...' : 'Save Changes'}
               </button>

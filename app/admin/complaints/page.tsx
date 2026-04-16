@@ -57,7 +57,7 @@ export default function AdminComplaintsPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-[#0D1F3C]">All Complaints</h1>
-        <p className="text-gray-500 text-sm mt-1">
+        <p className="text-gray-600 text-sm mt-1">
           {loading ? 'Loading...' : `${filtered.length} complaint${filtered.length !== 1 ? 's' : ''} found`}
         </p>
       </div>
@@ -70,12 +70,12 @@ export default function AdminComplaintsPage() {
             placeholder="Search by title, ID, student..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all"
+            className="border border-gray-300 rounded-xl px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all"
           />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all bg-white"
+            className="border border-gray-300 rounded-xl px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all bg-white"
           >
             <option value="">All Statuses</option>
             <option value="SUBMITTED">Submitted</option>
@@ -87,7 +87,7 @@ export default function AdminComplaintsPage() {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all bg-white"
+            className="border border-gray-300 rounded-xl px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all bg-white"
           >
             <option value="">All Categories</option>
             <option value="FURNITURE">Furniture</option>
@@ -103,7 +103,7 @@ export default function AdminComplaintsPage() {
             max={100}
             value={blockFilter}
             onChange={(e) => setBlockFilter(e.target.value)}
-            className="border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all"
+            className="border border-gray-300 rounded-xl px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all"
           />
         </div>
         {(statusFilter || categoryFilter || blockFilter || search) && (
@@ -130,7 +130,7 @@ export default function AdminComplaintsPage() {
         <div className="bg-white rounded-xl border border-dashed border-gray-300 p-12 text-center">
           <i className="fa-solid fa-magnifying-glass text-3xl text-gray-300 mb-3" />
           <p className="font-semibold text-gray-700 mb-1">No complaints found</p>
-          <p className="text-sm text-gray-400">Try adjusting your filters</p>
+          <p className="text-sm text-gray-500">Try adjusting your filters</p>
         </div>
       ) : (
         <div className="space-y-3">

@@ -10,6 +10,7 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         identifier: { label: 'Matric No / Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
+        portal: { label: 'Portal Type', type: 'text' },
       },
       async authorize(credentials) {
         if (!credentials?.identifier || !credentials?.password) return null
@@ -84,6 +85,9 @@ export const authOptions: NextAuthOptions = {
 
         const isValid = await bcrypt.compare(credentials.password, user.password)
         if (!isValid) return null
+
+        if (credentials.portal === 'staff' && user.role === 'STUDENT') return null
+        if (credentials.portal === 'student' && user.role !== 'STUDENT') return null
 
         return { id: user.id, name: user.name, email: user.email, role: user.role }
       },

@@ -26,8 +26,8 @@ export function StatusStepper({ currentStatus }: StatusStepperProps) {
   const currentIndex = ORDER[currentStatus]
 
   return (
-    <div className="w-full">
-      <div className="flex items-start justify-between relative">
+    <div className="w-full overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <div className="flex items-start justify-between relative min-w-[500px]">
         {/* Connecting line */}
         <div className="absolute top-4 left-0 right-0 h-0.5 bg-gray-200 z-0" />
         <div
@@ -66,7 +66,7 @@ export function StatusStepper({ currentStatus }: StatusStepperProps) {
               {/* Label */}
               <span
                 className={`mt-2 text-xs font-medium text-center leading-tight ${
-                  isDone || isActive ? 'text-[#0D1F3C]' : 'text-gray-400'
+                  isDone || isActive ? 'text-[#0D1F3C]' : 'text-gray-500'
                 }`}
               >
                 {step.label}

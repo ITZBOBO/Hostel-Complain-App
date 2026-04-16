@@ -67,13 +67,13 @@ export default function AdminArtisansPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold text-[#0D1F3C]">Artisans</h1>
-          <p className="text-gray-500 text-sm mt-1">
+          <p className="text-gray-600 text-sm mt-1">
             Manage artisan accounts and view their assigned complaints
           </p>
         </div>
         <button
           onClick={() => { setShowForm(!showForm); setError(''); setSuccess('') }}
-          className="flex items-center gap-2 bg-[#0D1F3C] text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-[#112240] transition-colors"
+          className="flex items-center gap-2 bg-[#0D1F3C] text-white px-5 min-h-[48px] rounded-xl font-semibold text-sm hover:bg-[#112240] transition-colors"
         >
           <i className={`fa-solid ${showForm ? 'fa-xmark' : 'fa-plus'} mr-2`} />
           {showForm ? 'Cancel' : 'Add Artisan'}
@@ -82,7 +82,7 @@ export default function AdminArtisansPage() {
 
       {/* Success message */}
       {success && (
-        <div className="mb-5 bg-green-50 border border-green-200 text-green-700 rounded-xl px-4 py-3 text-sm">
+        <div className="mb-5 bg-green-50 border border-green-200 text-green-700 rounded-xl px-4 py-3 text-sm flex items-center min-h-[48px]">
           {success}
         </div>
       )}
@@ -95,7 +95,7 @@ export default function AdminArtisansPage() {
           </h2>
           <form onSubmit={handleCreate} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1.5">Full Name</label>
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Full Name</label>
               <input
                 id="artisan-name"
                 required
@@ -103,11 +103,11 @@ export default function AdminArtisansPage() {
                 placeholder="e.g. John Adeyemi"
                 value={form.name}
                 onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-                className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C]"
+                className="w-full border border-gray-300 rounded-xl px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C]"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1.5">Email Address</label>
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Email Address</label>
               <input
                 id="artisan-email"
                 required
@@ -115,11 +115,11 @@ export default function AdminArtisansPage() {
                 placeholder="artisan@run.edu.ng"
                 value={form.email}
                 onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
-                className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C]"
+                className="w-full border border-gray-300 rounded-xl px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C]"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1.5">Password</label>
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Password</label>
               <input
                 id="artisan-password"
                 required
@@ -127,11 +127,11 @@ export default function AdminArtisansPage() {
                 placeholder="Min. 6 characters"
                 value={form.password}
                 onChange={(e) => setForm((p) => ({ ...p, password: e.target.value }))}
-                className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C]"
+                className="w-full border border-gray-300 rounded-xl px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C]"
               />
             </div>
             {error && (
-              <div className="sm:col-span-3 bg-red-50 border border-red-200 text-red-600 rounded-xl px-4 py-2.5 text-sm">
+              <div className="sm:col-span-3 bg-red-50 border border-red-200 text-red-600 rounded-xl px-4 min-h-[48px] flex items-center text-sm">
                 {error}
               </div>
             )}
@@ -140,8 +140,8 @@ export default function AdminArtisansPage() {
                 id="create-artisan-btn"
                 type="submit"
                 disabled={creating}
-                className="bg-[#0D1F3C] text-white px-6 py-2.5 rounded-xl font-semibold text-sm hover:bg-[#112240] disabled:opacity-50 transition-colors"
-              >
+                className="bg-[#0D1F3C] text-white w-full sm:w-auto px-6 py-2.5 rounded-xl min-h-[48px] font-semibold text-sm hover:bg-[#112240] disabled:opacity-50 transition-colors"
+               >
                 {creating ? 'Creating...' : 'Create Artisan Account'}
               </button>
             </div>
@@ -151,9 +151,9 @@ export default function AdminArtisansPage() {
 
       {/* Artisan List */}
       {loading ? (
-        <div className="space-y-3">
-          {[1, 2].map((i) => (
-            <div key={i} className="bg-white rounded-xl border border-gray-200 p-5 animate-pulse h-20" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="bg-white rounded-xl border border-gray-200 p-5 animate-pulse h-32" />
           ))}
         </div>
       ) : artisans.length === 0 ? (
@@ -163,48 +163,48 @@ export default function AdminArtisansPage() {
           <p className="text-sm text-gray-400 mb-5">Create your first artisan account to start assigning complaints.</p>
           <button
             onClick={() => setShowForm(true)}
-            className="bg-[#0D1F3C] text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-[#112240] transition-colors"
+            className="bg-[#0D1F3C] text-white px-5 min-h-[48px] rounded-xl font-semibold text-sm hover:bg-[#112240] transition-colors"
           >
             + Add Artisan
           </button>
         </div>
       ) : (
-        <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-100 bg-gray-50">
-                <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Name</th>
-                <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Email</th>
-                <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Assigned Tasks</th>
-                <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Date Added</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50">
-              {artisans.map((a) => (
-                <tr key={a.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#0D1F3C]/10 flex items-center justify-center text-[#0D1F3C] font-bold text-sm">
-                        {a.name[0].toUpperCase()}
-                      </div>
-                      <span className="font-medium text-gray-800">{a.name}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-gray-500">{a.email}</td>
-                  <td className="px-6 py-4">
-                    <span className={`font-semibold ${a._count.assigned > 0 ? 'text-orange-600' : 'text-gray-400'}`}>
-                      {a._count.assigned}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-gray-400">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Universal Mobile-App Style Card Layout */}
+          {artisans.map((a) => (
+            <div key={a.id} className="bg-white rounded-2xl border border-gray-200 p-5 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex flex-row items-center gap-3 w-full">
+                <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 border border-blue-100">
+                  <span className="text-[#0D1F3C] font-bold text-lg">
+                    {a.name[0].toUpperCase()}
+                  </span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-semibold text-gray-800 text-lg truncate">{a.name}</h3>
+                  <p className="text-xs font-mono text-gray-500 truncate">{a.email}</p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between bg-slate-50 rounded-xl p-3 border border-slate-100">
+                <div className="text-xs">
+                  <span className="text-gray-400 font-bold uppercase tracking-wider block mb-1">Tasks</span>
+                  <span className={`font-semibold px-2 py-0.5 rounded-md text-sm ${a._count.assigned > 0 ? 'bg-amber-100 text-amber-700' : 'bg-gray-200 text-gray-600'}`}>
+                    {a._count.assigned} Active
+                  </span>
+                </div>
+                <div className="text-xs text-right">
+                  <span className="text-gray-400 font-bold uppercase tracking-wider block mb-1">Added On</span>
+                  <span className="text-gray-700 font-semibold text-sm">
                     {new Date(a.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          ))}
         </div>
       )}
     </div>
   )
 }
+

@@ -62,25 +62,25 @@ export default function ArtisanDashboardPage() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-[#0D1F3C]">My Assigned Tasks</h1>
-        <p className="text-gray-500 text-sm mt-1">
+        <p className="text-gray-600 text-sm mt-1">
           Complaints assigned to you — update the status as you work on them
         </p>
       </div>
 
       {/* Stats */}
       {!loading && (
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <p className="text-2xl font-bold text-[#0D1F3C]">{complaints.length}</p>
-            <p className="text-xs text-gray-500 mt-0.5">Total Assigned</p>
+            <p className="text-xs text-gray-600 mt-0.5">Total Assigned</p>
           </div>
           <div className="bg-orange-50 rounded-xl border border-orange-100 p-4">
             <p className="text-2xl font-bold text-orange-600">{pending}</p>
-            <p className="text-xs text-gray-500 mt-0.5">Active Tasks</p>
+            <p className="text-xs text-gray-600 mt-0.5">Active Tasks</p>
           </div>
           <div className="bg-green-50 rounded-xl border border-green-100 p-4">
             <p className="text-2xl font-bold text-green-600">{resolved}</p>
-            <p className="text-xs text-gray-500 mt-0.5">Resolved</p>
+            <p className="text-xs text-gray-600 mt-0.5">Resolved</p>
           </div>
         </div>
       )}
@@ -91,9 +91,9 @@ export default function ArtisanDashboardPage() {
           <button
             key={tab.value}
             onClick={() => setActiveTab(tab.value)}
-            className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+            className={`flex-shrink-0 px-5 min-h-[48px] rounded-xl text-sm font-semibold transition-all ${
               activeTab === tab.value
-                ? 'bg-[#0D1F3C] text-white'
+                ? 'bg-[#0D1F3C] text-white shadow-md'
                 : 'bg-white text-gray-600 border border-gray-200 hover:border-[#0D1F3C]/30 hover:text-[#0D1F3C]'
             }`}
           >
@@ -101,7 +101,7 @@ export default function ArtisanDashboardPage() {
             {counts[tab.value] > 0 && (
               <span
                 className={`ml-1.5 text-xs px-1.5 py-0.5 rounded-full ${
-                  activeTab === tab.value ? 'bg-white/20' : 'bg-gray-100'
+                  activeTab === tab.value ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-700'
                 }`}
               >
                 {counts[tab.value]}

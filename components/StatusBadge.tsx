@@ -9,32 +9,32 @@ const CONFIG: Record<
   SUBMITTED: {
     label: 'Submitted',
     bg: 'bg-gray-100',
-    text: 'text-gray-600',
-    dot: 'bg-gray-400',
+    text: 'text-gray-700',
+    dot: 'bg-gray-500',
   },
   UNDER_REVIEW: {
     label: 'Under Review',
     bg: 'bg-amber-100',
-    text: 'text-amber-700',
-    dot: 'bg-amber-500',
+    text: 'text-amber-800',
+    dot: 'bg-amber-600',
   },
   ASSIGNED: {
     label: 'Assigned',
     bg: 'bg-blue-100',
-    text: 'text-blue-700',
-    dot: 'bg-blue-500',
+    text: 'text-blue-800',
+    dot: 'bg-blue-600',
   },
   IN_PROGRESS: {
     label: 'In Progress',
     bg: 'bg-orange-100',
-    text: 'text-orange-700',
-    dot: 'bg-orange-500',
+    text: 'text-orange-800',
+    dot: 'bg-orange-600',
   },
   RESOLVED: {
     label: 'Resolved',
     bg: 'bg-green-100',
-    text: 'text-green-700',
-    dot: 'bg-green-500',
+    text: 'text-green-800',
+    dot: 'bg-green-600',
   },
 }
 

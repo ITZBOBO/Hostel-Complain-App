@@ -233,7 +233,7 @@ export default function NewComplaintPage() {
                 value={form.title}
                 onChange={handleChange}
                 placeholder="e.g. Broken wardrobe door in my room"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all"
               />
             </div>
             <div>
@@ -248,7 +248,7 @@ export default function NewComplaintPage() {
                 value={form.description}
                 onChange={handleChange}
                 placeholder="Describe the problem in detail..."
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all resize-none"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all resize-none"
               />
             </div>
           </div>
@@ -259,7 +259,7 @@ export default function NewComplaintPage() {
           <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-4">
             Location
           </h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 Hostel Block <span className="text-red-500">*</span>
@@ -274,7 +274,7 @@ export default function NewComplaintPage() {
                 value={form.block}
                 onChange={handleChange}
                 placeholder="e.g. 3"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all"
               />
               <p className="text-xs text-gray-400 mt-1">Enter block number (1–100)</p>
             </div>
@@ -290,7 +290,7 @@ export default function NewComplaintPage() {
                 value={form.roomNumber}
                 onChange={handleChange}
                 placeholder="e.g. 14B"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all"
               />
             </div>
           </div>
@@ -339,7 +339,7 @@ export default function NewComplaintPage() {
                 required
                 value={form.subCategory}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all bg-white"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 min-h-[48px] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D1F3C]/20 focus:border-[#0D1F3C] transition-all bg-white"
               >
                 <option value="">Select subcategory...</option>
                 {selectedCategory.subCategories.map((sub) => (
